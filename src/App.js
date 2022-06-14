@@ -1,6 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+import { Names, partnersLoading } from "./store/partner/slice";
+import { getSomeNames } from "./store/partner/actions";
+import { selectPartners } from "./store/partner/selectors";
 
 import HomePage from "./pages/HomePage";
 import MessageBox from "./components/MessageBox";
@@ -14,11 +20,17 @@ import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
   const dispatch = useDispatch();
+
+  const isPartnerLoading = useSelector(selectPartners);
+
+
   const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
+    dispatch(getSomeNames);
   }, [dispatch]);
+
 
   return (
     <div className="App">
@@ -42,9 +54,11 @@ function App() {
         )}
       </div>
       <Routes>
+
         <Route exact path="/home" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+
       </Routes>
     </div>
   );
