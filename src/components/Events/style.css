@@ -1,0 +1,33 @@
+.form-style-4 {
+  width: 450px;
+  font-size: 16px;
+  background: #ffffff;
+  padding: 30px 30px 15px 30px;
+  border: 2px solid #ccced0;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+.form-style-4 label {
+  font-size: 16px;
+  color: rgb(39, 31, 31);
+  padding: 2px 2px 2px 2px;
+}
+.form-style-4 label {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.form-style-4 input[type="date"] {
+  background-color: #ffffff;
+  border: solid;
+  width: 200px;
+  outline: none;
+  padding: 2px 2px 2px 2px;
+}
+
+.btn {
+  background-color: #11a704;
+  color: white;
+  border: none;
+  padding: 6px 8px 6px 8px;
+  border-radius: 5px;
+}

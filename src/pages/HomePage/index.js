@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./styles.css";
+import EventsForm from "../../components/Events";
 
 export default function HomePage() {
   return (
@@ -28,6 +29,9 @@ export default function HomePage() {
         </div>
       </div>
       Welcome to HomePage
+      <div>
+        <EventsForm />
+      </div>
     </div>
   );
 }
