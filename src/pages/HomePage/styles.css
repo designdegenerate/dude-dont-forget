@@ -64,11 +64,3 @@ ul.details-bar {
     gap: 32px;
     width: 100%;
 }
-
-.event-card{
-    width: 100%;
-    border: 1px solid #222;
-    display: flex;
-    padding: 16px;
-    border-radius: 4px;
-}

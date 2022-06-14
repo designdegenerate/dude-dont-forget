@@ -1,4 +1,5 @@
 import React from "react";
+import EventCard from "../../components/EventCard";
 
 import "./styles.css";
 
@@ -24,6 +25,13 @@ export default function HomePage() {
             <div className="event-card">Card</div>
             <div className="event-card">Card</div>
             <div className="event-card">Card</div>
+            <EventCard 
+              title="Birthday"
+              urlTitle="Buy flowers"
+              date="Jan 16"
+              missedBy="4 days!"
+            
+            />
           </div>
         </div>
       </div>

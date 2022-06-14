@@ -1,0 +1,72 @@
+.event-card {
+  width: 100%;
+  display: flex;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-card .left-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 16px;
+  gap: 32px;
+}
+
+.title-url * {
+  display: block;
+}
+
+.title-url h2 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.title-url a {
+  margin-top: 8px;
+  padding: 4px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.right-side div:first-child {
+  text-align: right;
+  margin: 16px 0;
+}
+
+.right-side div:first-child p {
+  display: block;
+  margin: 0;
+}
+
+.right-side div:first-child p + p {
+  margin: 4px 0 0 0;
+}
+
+
+.right-side div:last-child {
+  border-left: 1px solid rgba(0,0,0,0.2);
+  height: calc(100% - 24px);
+  display: flex;
+  align-items: center;
+}
+
+.right-side div:last-child button {
+  padding: 24px;
+  background: none;
+  cursor: pointer;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
