@@ -1,0 +1,25 @@
+.fact-card {
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+}
+
+.fact-card h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.fact-card p {
+  margin: 8px 0 0 0;
+}
+
+.fact-card button {
+  background: none;
+  border: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
