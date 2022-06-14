@@ -17,6 +17,8 @@ export default function Login() {
     }
   }, [token, navigate]);
 
+  console.log(email);
+
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(login(email, password));
