@@ -1,10 +1,27 @@
 .event-card {
+  --border-color: rgba(0,0,0,0.2);
+  --bg-color: #fff;
+  --button-color: rgba(0,0,0,0.1);
+}
+
+.event-card {
   width: 100%;
   display: flex;
   border: 1px solid rgba(0,0,0,0.2);
+  border-color: var(--border-color);
+  background-color: var(--bg-color);
   border-radius: 8px;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.event-card button {
+  appearance: none;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  border-color: transparent;
+  font-size: 24px;
 }
 
 .event-card .left-side {
@@ -13,6 +30,18 @@
   align-items: center;
   margin: 16px;
   gap: 32px;
+}
+
+.event-card .left-side button {
+  background-color: rgba(0,0,0,0.2);
+  border: 1px auto rgba(0,0,0,0.5);
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title-url * {
@@ -28,6 +57,7 @@
 .title-url a {
   margin-top: 8px;
   padding: 4px;
+  background-color: var(--button-color);
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 4px;
   cursor: pointer;
@@ -69,4 +99,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.event-card[data-type="danger"] {
+  --bg-color: #FF9393;
+  --button-color: #FF5353;
+}
+
+.event-card[data-type="warning"] {
+  --bg-color: #FFEBB9;
+  --button-color: #FFCF54;  
+}
+
+.event-card[data-type="danger"] h2:before,
+.event-card[data-type="danger"] h2:after
+ {
+  content: " 💥 ";
+}
+
+.event-card[data-type="warning"] h2:before
+ {
+  content: " 🧨 ";
 }
