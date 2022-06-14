@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./styles.css";
-// import EventCard from "../../components/EventCard";
+import EventsForm from "../../components/Events";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -90,6 +90,10 @@ export default function HomePage() {
         >
           +
         </button>
+      </div>
+
+      <div>
+        <EventsForm />
       </div>
     </div>
   );
