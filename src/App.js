@@ -2,33 +2,22 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-
-import { Names, partnersLoading } from "./store/partner/slice";
-import { getSomeNames } from "./store/partner/actions";
-import { selectPartners } from "./store/partner/selectors";
-
+import { useEffect} from "react";
 import HomePage from "./pages/HomePage";
 import MessageBox from "./components/MessageBox";
 import Login from "./pages/Login/Login";
 import { logOut } from "./store/user/slice";
-import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "./store/user/selectors";
 import SignUp from "./pages/SignUp/SignUp";
-import { useEffect } from "react";
 import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
   const dispatch = useDispatch();
 
-  const isPartnerLoading = useSelector(selectPartners);
-
-
   const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
-    dispatch(getSomeNames);
   }, [dispatch]);
 
 
