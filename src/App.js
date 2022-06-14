@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import MessageBox from "./components/MessageBox";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -12,9 +13,13 @@ function App() {
       <h1>Dude Don't Forget</h1>
       <div className="AppNav">
         <NavLink to="/home">Home</NavLink>
+        <br />
+        <br />
+        <NavLink to="/login">Login</NavLink>
       </div>
       <Routes>
         <Route exact path="/home" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
