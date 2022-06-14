@@ -3,6 +3,7 @@ import EventCard from "../../components/EventCard";
 import FactCard from "../../components/FactCard";
 
 import "./styles.css";
+import EventsForm from "../../components/Events";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,9 @@ export default function HomePage() {
         </div>
       </div>
       Welcome to HomePage
+      <div>
+        <EventsForm />
+      </div>
     </div>
   );
 }
