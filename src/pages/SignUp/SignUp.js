@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../store/user/actions";
+import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 
 export default function Login() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -19,15 +20,25 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(login(email, password));
+    dispatch(signUp(name, email, password));
     setEmail("");
     setPassword("");
   }
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
+        <p>
+          <label>
+            Name:{" "}
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </p>
         <p>
           <label>
             Email:{" "}
@@ -49,7 +60,7 @@ export default function Login() {
           </label>
         </p>
         <p>
-          <button type="submit">Login</button>
+          <button type="submit">Sign up</button>
         </p>
       </form>
     </div>

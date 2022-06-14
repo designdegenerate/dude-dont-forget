@@ -5,12 +5,16 @@ import { NavLink } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MessageBox from "./components/MessageBox";
 import Login from "./pages/Login/Login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserWithStoredToken } from "./store/user/actions";
 import { useEffect } from "react";
+import SignUp from "./pages/SignUp/SignUp";
+import { selectToken } from "./store/user/selectors";
+import { logOut } from "./store/user/slice";
 
 function App() {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -24,11 +28,23 @@ function App() {
         <NavLink to="/home">Home</NavLink>
         <br />
         <br />
-        <NavLink to="/login">Login</NavLink>
+        {!token ? (
+          <div>
+            <NavLink to="/login">Login</NavLink>
+            <br />
+            <br />
+            <NavLink to="/signup">Sign up</NavLink>
+          </div>
+        ) : null}
+
+        {token ? (
+          <button onClick={() => dispatch(logOut())}>Log out</button>
+        ) : null}
       </div>
       <Routes>
         <Route exact path="/home" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
