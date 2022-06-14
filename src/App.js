@@ -10,15 +10,27 @@ import { selectPartners } from "./store/partner/selectors";
 
 import HomePage from "./pages/HomePage";
 import MessageBox from "./components/MessageBox";
+import Login from "./pages/Login/Login";
+import { logOut } from "./store/user/slice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectToken } from "./store/user/selectors";
+import SignUp from "./pages/SignUp/SignUp";
+import { useEffect } from "react";
+import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
   const dispatch = useDispatch();
+
   const isPartnerLoading = useSelector(selectPartners);
 
+
+  const token = useSelector(selectToken);
+
   useEffect(() => {
-    // console.log("page: but no payload")
+    dispatch(getUserWithStoredToken());
     dispatch(getSomeNames);
-  }, []);
+  }, [dispatch]);
+
 
   return (
     <div className="App">
@@ -26,9 +38,27 @@ function App() {
       <h1>Dude Don't Forget</h1>
       <div className="AppNav">
         <NavLink to="/home">Home</NavLink>
+        <br />
+        <br />
+        {!token ? (
+          <div>
+            <NavLink to="/signup">Sign up</NavLink>
+            <br />
+            <br />
+            <NavLink to="/login">Login</NavLink>
+            <br />
+            <br />
+          </div>
+        ) : (
+          <button onClick={() => dispatch(logOut())}>Logout</button>
+        )}
       </div>
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+
+        <Route exact path="/home" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
       </Routes>
     </div>
   );
