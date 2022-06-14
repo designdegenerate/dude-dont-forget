@@ -1,4 +1,6 @@
 import React from "react";
+import EventCard from "../../components/EventCard";
+import FactCard from "../../components/FactCard";
 
 import "./styles.css";
 

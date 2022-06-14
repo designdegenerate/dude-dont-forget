@@ -1,0 +1,123 @@
+.event-card {
+  --border-color: rgba(0,0,0,0.2);
+  --bg-color: #fff;
+  --button-color: rgba(0,0,0,0.1);
+}
+
+.event-card {
+  width: 100%;
+  display: flex;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-color: var(--border-color);
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-card button {
+  appearance: none;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  border-color: transparent;
+  font-size: 24px;
+}
+
+.event-card .left-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 16px;
+  gap: 32px;
+}
+
+.event-card .left-side button {
+  background-color: rgba(0,0,0,0.2);
+  border: 1px auto rgba(0,0,0,0.5);
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-url * {
+  display: block;
+}
+
+.title-url h2 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.title-url a {
+  margin-top: 8px;
+  padding: 4px;
+  background-color: var(--button-color);
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.right-side div:first-child {
+  text-align: right;
+  margin: 16px 0;
+}
+
+.right-side div:first-child p {
+  display: block;
+  margin: 0;
+}
+
+.right-side div:first-child p + p {
+  margin: 4px 0 0 0;
+}
+
+
+.right-side div:last-child {
+  border-left: 1px solid rgba(0,0,0,0.2);
+  height: calc(100% - 24px);
+  display: flex;
+  align-items: center;
+}
+
+.right-side div:last-child button {
+  padding: 24px;
+  background: none;
+  cursor: pointer;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-card[data-type="danger"] {
+  --bg-color: #FF9393;
+  --button-color: #FF5353;
+}
+
+.event-card[data-type="warning"] {
+  --bg-color: #FFEBB9;
+  --button-color: #FFCF54;  
+}
+
+.event-card[data-type="danger"] h2:before,
+.event-card[data-type="danger"] h2:after
+ {
+  content: " 💥 ";
+}
+
+.event-card[data-type="warning"] h2:before
+ {
+  content: " 🧨 ";
+}
