@@ -96,18 +96,23 @@ export default function HomePage() {
               Facts
             </li>
           </ul>
-          <div className="events">
-            {partnerList.length > 0 ? (
-              partnerList[
-                partnerList.findIndex(
-                  (partner) => partner.id === getCurrentPartnerId
-                )
-              ].events.map((partner) => {
-                return <EventCard />;
-              })
+          <div className="event-list">
+            {isEventCurrent ? (
+              partnerList.length > 0 ? (
+                partnerList[
+                  partnerList.findIndex(
+                    (partner) => partner.id === getCurrentPartnerId
+                  )
+                ].events.map((partner) => {
+                  return <EventCard />;
+                })
+              ) : (
+                <></>
+              )
             ) : (
-              <>"hge"</>
+              <></>
             )}
+            {}
           </div>
           <div className="fact-list">
             {!isEventCurrent ? (

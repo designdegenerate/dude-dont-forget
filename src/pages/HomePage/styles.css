@@ -47,11 +47,16 @@ ul.details-bar {
   width: 100%;
 }
 
-.event-list {
+.event-list,
+.fact-list {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 100%;
+}
+
+.event-list > div,
+.fact-list > div {
+  margin: 0 16px;
 }
 
 .names-button {
