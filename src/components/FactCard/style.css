@@ -1,6 +1,6 @@
 .fact-card {
   border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 16px;
   position: relative;
 }

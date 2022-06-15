@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: localStorage.getItem("token"),
   profile: null,
-  namesSelection: 0, // names is
+  namesSelectionId: null, // names is
   isEvent: true,
 };
 
@@ -24,10 +24,29 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
     },
-    getSelection: (state, action) => {},
+    manualData: (state, action) => {
+      state.profile = action.payload;
+
+      if (action.payload.partners) {
+        state.namesSelectionId = action.payload.partners[0].id;
+      }
+    },
+    selectNameById: (state, action) => {
+      state.namesSelectionId = action.payload;
+    },
+    isEventToggle: (state, action) => {
+      state.isEvent = action.payload;
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  manualData,
+  selectNameById,
+  isEventToggle,
+} = userSlice.actions;
 
 export default userSlice.reducer;
