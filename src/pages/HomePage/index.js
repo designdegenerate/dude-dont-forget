@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./styles.css";
 import EventsForm from "../../components/Events";
+import { manualData } from "../../store/user/slice";
+
+import DATA from "../../data.json";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -13,6 +16,7 @@ export default function HomePage() {
 
   return (
     <div className="main-container">
+      <button onClick={() => dispatch(manualData(DATA))}> Load data</button>
       <div>
         <div className="names">
           <ul>
