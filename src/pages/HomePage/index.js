@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./styles.css";
 import EventsForm from "../../components/Events";
@@ -8,8 +8,6 @@ export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
   const [partnerName, setPartnerName] = useState("");
   const [toggleEventForm, setToggleEventForm] = useState(false);
-
-  console.log(partnerName);
 
   return (
     <div className="main-container">
