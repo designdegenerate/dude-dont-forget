@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 
+import "../Login/styles.css"
+
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,42 +25,29 @@ export default function SignUp() {
     }
   });
   return (
-    <div>
+    <div className="login-page" >
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
-        <p>
-          <label>
-            Name:{" "}
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Email:{" "}
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Password:{" "}
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Sign Up</button>
-        </p>
+        <label>Name: </label>
+
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label>Email: </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password: </label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );

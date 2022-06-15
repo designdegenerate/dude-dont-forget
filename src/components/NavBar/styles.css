@@ -10,3 +10,7 @@ nav > div{
     display: flex;
     gap: 24px;
 }
+
+nav a {
+    color: inherit;
+}
