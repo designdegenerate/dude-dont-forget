@@ -27,6 +27,9 @@ export const userSlice = createSlice({
     manualData: (state, action) => {
       state.profile = action.payload;
     },
+    selectName: (state, action) => {
+      state.namesSelection = action.payload;
+    },
   },
 });
 

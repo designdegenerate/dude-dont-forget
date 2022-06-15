@@ -11,6 +11,8 @@ import { selectToken } from "./store/user/selectors";
 import SignUp from "./pages/SignUp/SignUp";
 import { getUserWithStoredToken } from "./store/user/actions";
 import NavBar from "./components/NavBar";
+import DATA from "./data.json";
+import { manualData } from "./store/user/slice";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
+    dispatch(manualData(DATA));
   }, [dispatch]);
 
   return (

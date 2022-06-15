@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import EventsForm from "../../components/Events";
 import { manualData } from "../../store/user/slice";
+import { selectPartners } from "../../store/user/selectors";
 
 import DATA from "../../data.json";
 
@@ -12,7 +13,7 @@ export default function HomePage() {
   const [partnerName, setPartnerName] = useState("");
   const [toggleEventForm, setToggleEventForm] = useState(false);
 
-  console.log(partnerName);
+  const partnerList = useSelector(selectPartners);
 
   return (
     <div className="main-container">
@@ -20,7 +21,12 @@ export default function HomePage() {
       <div>
         <div className="names">
           <ul>
-            <li className="names-button" onClick={() => console.log("Katie")}>
+            {partnerList
+              ? partnerList.map((partner) => (
+                  <li key={partner.id}>{partner.name}</li>
+                ))
+              : ""}
+            {/* <li className="names-button" onClick={() => console.log("Katie")}>
               Katie
             </li>
             <li className="names-button" onClick={() => console.log("Alice")}>
@@ -28,7 +34,7 @@ export default function HomePage() {
             </li>
             <li className="names-button" onClick={() => console.log("Jessica")}>
               Jessica
-            </li>
+            </li> */}
           </ul>
           <div className="add-name">
             {showForm ? (
