@@ -1,40 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
-import EventsForm from "../../components/Events";
-import { manualData } from "../../store/user/slice";
-import { selectPartners } from "../../store/user/selectors";
+import EventCard from "../../components/EventCard";
+import EventsForm from "../../components/EventsForm";
 
-import DATA from "../../data.json";
+import { selectPartnerId, selectPartners } from "../../store/user/selectors";
+import { selectEventOrFact } from "../../store/user/selectors";
+import { selectNameById, isEventToggle } from "../../store/user/slice";
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [partnerName, setPartnerName] = useState("");
   const [toggleEventForm, setToggleEventForm] = useState(false);
+  const isEventCurrent = useSelector(selectEventOrFact);
 
   const partnerList = useSelector(selectPartners);
+  const getCurrentPartnerId = useSelector(selectPartnerId);
 
   return (
     <div className="main-container">
-      <button onClick={() => dispatch(manualData(DATA))}> Load data</button>
       <div>
         <div className="names">
           <ul>
             {partnerList
               ? partnerList.map((partner) => (
-                  <li key={partner.id}>{partner.name}</li>
+                  <li
+                    data-selected={
+                      getCurrentPartnerId === partner.id ? "true" : ""
+                    }
+                    key={partner.id}
+                    onClick={() => {
+                      dispatch(selectNameById(partner.id));
+                    }}
+                  >
+                    {partner.name}
+                  </li>
                 ))
               : ""}
-            {/* <li className="names-button" onClick={() => console.log("Katie")}>
-              Katie
-            </li>
-            <li className="names-button" onClick={() => console.log("Alice")}>
-              Alice
-            </li>
-            <li className="names-button" onClick={() => console.log("Jessica")}>
-              Jessica
-            </li> */}
           </ul>
           <div className="add-name">
             {showForm ? (
@@ -71,25 +74,23 @@ export default function HomePage() {
         </div>
         <ul className="details-bar">
           <li
+            data-selected={isEventCurrent}
             className="events-facts-button"
-            onClick={() => console.log("Events")}
+            onClick={() => dispatch(isEventToggle(true))}
           >
             Events
           </li>
           <li
+            data-selected={!isEventCurrent}
             className="events-facts-button"
-            onClick={() => console.log("Facts")}
+            onClick={() => dispatch(isEventToggle(false))}
           >
             Facts
           </li>
         </ul>
         <div className="events">
           <div className="event-list">
-            {/* <EventCard /> */}
-
-            <div className="event-card">Card</div>
-            <div className="event-card">Card</div>
-            <div className="event-card">Card</div>
+            <EventCard />
           </div>
         </div>
         <button
@@ -102,9 +103,7 @@ export default function HomePage() {
         </button>
       </div>
 
-      <div>
-        <EventsForm />
-      </div>
+      <div>{/* <EventsForm /> */}</div>
     </div>
   );
 }
