@@ -57,7 +57,7 @@ export const login = (email, password) => {
       dispatch(
         loginSuccess({ token: response.data.token, user: response.data.user })
       );
-      console.log({ DATA: response.data });
+      // console.log({ DATA: response.data });
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       dispatch(appDoneLoading());
     } catch (error) {
