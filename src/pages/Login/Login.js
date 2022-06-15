@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 
+import "./styles.css";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,32 +25,22 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div className="login-page">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <p>
-          <label>
-            Email:{" "}
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Password:{" "}
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Login</button>
-        </p>
+        <label>Email: </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
       </form>
     </div>
   );
