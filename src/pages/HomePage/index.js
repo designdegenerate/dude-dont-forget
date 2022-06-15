@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import EventCard from "../../components/EventCard";
 import EventsForm from "../../components/EventsForm";
+import FactCard from "../../components/FactCard";
 
 import { selectPartnerId, selectPartners } from "../../store/user/selectors";
 import { selectEventOrFact } from "../../store/user/selectors";
@@ -17,6 +18,11 @@ export default function HomePage() {
 
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
+
+  // const partnerDetails = partnerList.find(
+  //   (partner) => partner.id === getCurrentPartnerId
+  // );
+  console.log(partnerList);
 
   return (
     <div className="main-container">
@@ -89,9 +95,38 @@ export default function HomePage() {
           </li>
         </ul>
         <div className="events">
-          <div className="event-list">
-            <EventCard />
-          </div>
+          {isEventCurrent ? (
+            <div className="event-list">
+              {partnerList
+                ? partnerList[
+                    partnerList.findIndex(
+                      (partner) => partner.id === getCurrentPartnerId
+                    )
+                  ].events.map((partner) => {
+                    return <EventCard />;
+                  })
+                : ""}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="fact-list">
+          {!isEventCurrent ? (
+            <div className="event-list">
+              {partnerList
+                ? partnerList[
+                    partnerList.findIndex(
+                      (partner) => partner.id === getCurrentPartnerId
+                    )
+                  ].facts.map((partner) => {
+                    return <FactCard />;
+                  })
+                : ""}
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <button
           className="add-event-button"
@@ -103,7 +138,7 @@ export default function HomePage() {
         </button>
       </div>
 
-      <div>{/* <EventsForm /> */}</div>
+      <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>
     </div>
   );
 }
