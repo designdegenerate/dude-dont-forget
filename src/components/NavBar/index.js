@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { logOut } from "../../store/user/slice";
 import { selectToken } from "../../store/user/selectors";
-import { getUserWithStoredToken } from "../../store/user/actions";
+import { getUserWithStoredToken, logOutUser } from "../../store/user/actions";
 
 import "./styles.css";
 
 export default function NavBar() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function NavBar() {
       ) : (
         <div>
           <Link to="/home">Home</Link>
-          <button onClick={() => dispatch(logOut())}>Logout</button>
+          <button onClick={() => dispatch(logOutUser(navigate))}>Logout</button>
         </div>
       )}
     </nav>

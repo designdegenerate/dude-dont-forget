@@ -25,18 +25,12 @@ export const userSlice = createSlice({
       state.token = null;
       state.profile = null;
       state.partners = [];
+      state.namesSelectionId = null;
     },
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
       state.partners = action.payload.user.partners;
       state.namesSelectionId = action.payload.user.partners[0].id;
-    },
-    manualData: (state, action) => {
-      state.profile = action.payload;
-
-      if (action.payload.partners) {
-        state.namesSelectionId = action.payload.partners[0].id;
-      }
     },
     selectNameById: (state, action) => {
       state.namesSelectionId = action.payload;
@@ -51,7 +45,6 @@ export const {
   loginSuccess,
   logOut,
   tokenStillValid,
-  manualData,
   selectNameById,
   isEventToggle,
 } = userSlice.actions;

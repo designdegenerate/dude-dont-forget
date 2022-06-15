@@ -71,6 +71,13 @@ export const login = (email, password) => {
   };
 };
 
+export const logOutUser = (navigate) => {
+  return async (dispatch, getState) => {
+    dispatch(logOut());
+    navigate("/login");
+  }
+}
+
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
