@@ -19,10 +19,7 @@ export default function HomePage() {
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
 
-  // const partnerDetails = partnerList.find(
-  //   (partner) => partner.id === getCurrentPartnerId
-  // );
-  console.log(partnerList);
+  // console.log(partnerList);
 
   return (
     <div className="main-container">
