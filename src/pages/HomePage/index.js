@@ -21,8 +21,6 @@ export default function HomePage() {
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
 
-  console.log(partnerList.length);
-
   return (
     <div className="main-container">
       {Loading ? (
@@ -103,8 +101,10 @@ export default function HomePage() {
                   partnerList.findIndex(
                     (partner) => partner.id === getCurrentPartnerId
                   )
-                ].events.map((partner) => {
-                  return <EventCard />;
+                ].events.map((event) => {
+                  return (
+                    <EventCard title={event.title} date={event.startDate} />
+                  );
                 })
               ) : (
                 <></>
@@ -122,8 +122,10 @@ export default function HomePage() {
                       partnerList.findIndex(
                         (partner) => partner.id === getCurrentPartnerId
                       )
-                    ].facts.map((partner) => {
-                      return <FactCard />;
+                    ].facts.map((fact) => {
+                      return (
+                        <FactCard title={fact.title} details={fact.details} />
+                      );
                     })
                   : ""}
               </div>
@@ -131,14 +133,25 @@ export default function HomePage() {
               <></>
             )}
           </div>
-          <button
-            className="add-event-button"
-            onClick={() => {
-              setToggleEventForm(!toggleEventForm);
-            }}
-          >
-            +
-          </button>
+          {isEventCurrent ? (
+            <button
+              className="add-event-button"
+              onClick={() => {
+                setToggleEventForm(!toggleEventForm);
+              }}
+            >
+              +
+            </button>
+          ) : (
+            <button
+              className="add-event-button"
+              onClick={() => {
+                setToggleEventForm(!toggleEventForm);
+              }}
+            >
+              +
+            </button>
+          )}
         </div>
       )}
       <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>

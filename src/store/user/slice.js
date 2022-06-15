@@ -29,6 +29,7 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
       state.partners = action.payload.user.partners;
+      state.namesSelectionId = action.payload.user.partners[0].id;
     },
     manualData: (state, action) => {
       state.profile = action.payload;

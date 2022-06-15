@@ -15,11 +15,12 @@
 }
 
 .fact-card button {
+  font-size: 24px;
   background: none;
   border: none;
   display: block;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 4px;
+  right: 8px;
   cursor: pointer;
 }
