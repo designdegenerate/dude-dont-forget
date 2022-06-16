@@ -5,7 +5,7 @@ import { loginSuccess, logOut, tokenStillValid } from "./slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
 
-export const signUp = (name, email, password) => {
+export const signUp = (name, email, password, nameFriend) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
@@ -13,6 +13,7 @@ export const signUp = (name, email, password) => {
         name,
         email,
         password,
+        nameFriend,
       });
 
       dispatch(
@@ -75,8 +76,8 @@ export const logOutUser = (navigate) => {
   return async (dispatch, getState) => {
     dispatch(logOut());
     navigate("/login");
-  }
-}
+  };
+};
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
