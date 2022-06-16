@@ -106,7 +106,14 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-// send email
+const sendEvent = (type, date, interval) => async (dispatch, getState) => {
+  try {
+    const response = await axios.post(`${apiUrl}/`);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const sendEmail = (type, date, reminder) => {
   return async (dispatch) => {
     try {

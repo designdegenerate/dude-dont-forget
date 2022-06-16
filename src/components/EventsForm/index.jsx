@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendEmail } from "../../store/user/actions";
 import "./style.css";
 
-const EventsForm = () => {
+export default function EventsForm(props) {
   const dispatch = useDispatch();
 
   const [type, setType] = useState(
@@ -14,12 +14,8 @@ const EventsForm = () => {
     "Anniversary"
   );
   const [date, setDate] = useState();
-  const [reminder, setReminder] = useState(
-    "1 month",
-    "3 months",
-    "6 monthts",
-    "1 year"
-  );
+
+  const [interval, setInterval] = useState();
 
   //   const token = useSelector();
 
@@ -28,71 +24,74 @@ const EventsForm = () => {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(sendEmail(type, date, reminder));
+    // dispatch(sendEvent(type, date, interval));
 
     setType("");
     setDate("");
-    setReminder("");
+    setInterval("");
   }
 
   return (
-    <form>
-      <div className="form-style-4">
-        <div>
-          <h2>Create Event</h2>
-          <div className="card">
-            <div className="card-body">
-              <label for="type">
-                <strong>Type</strong>
-              </label>
-              <select id="type" name="type">
-                <option value="Give Flowers">Give Flowers</option>
-                <option value="Send chocolate">Buy chocolate</option>
-                <option value="Birthday">Birthday</option>
-                <option value="Valentine's">Valentine's</option>
-                <option value="Anniversary">Anniversary</option>
-                <input
-                  value={type}
-                  onChange={(event) => setType(event.target.value)}
-                  required
-                />
-              </select>
+    <>
+      <div className="overlay" onClick={props.close}></div>
+      <form>
+        <div className="form-style-4">
+          <div>
+            <h2>Create Event</h2>
+            <div className="card">
+              <div className="create-event-type-date">
+                <div className="card-body create-event-form-divs">
+                  <label for="type">
+                    <strong>Type</strong>
+                  </label>
+                  <select id="type" name="type">
+                    <option value="Give Flowers">Give Flowers</option>
+                    <option value="Send chocolate">Buy chocolate</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Valentine's">Valentine's</option>
+                    <option value="Anniversary">Anniversary</option>
+                  </select>
+                </div>
+                <div className="create-event-form-divs">
+                  <label>
+                    <strong>Due Date</strong>
+                  </label>
+                  <input
+                    type="date"
+                    placeholder="dd-mm-yyy"
+                    value={date}
+                    onChange={(event) => setDate(event.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="create-event-form-divs">
+                <label for="interval">
+                  <strong>Reminder</strong>
+                </label>
+                <select id="interval" name="interval" onChange={setInterval}>
+                  <option value="1 month">1 month</option>
+                  <option value="3 months">3 months</option>
+                  <option value="6 months">6 months</option>
+                  <option value="1 year">1 year</option>
+                </select>
+              </div>
+              <div className="create-event-form-divs create-event-button">
+                <button
+                  type="reset"
+                  onClick={props.close}
+                  className="btn create-event-cancel-btn"
+                >
+                  Cancel
+                </button>
+                <button type="submit" onClick={submitForm} className="btn">
+                  Save
+                </button>
+              </div>
             </div>
-            <div>
-              <label>
-                <strong>Due Date</strong>
-              </label>
-              <input
-                type="date"
-                placeholder="dd-mm-yyy"
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label for="delta">
-                <strong>Reminder</strong>
-              </label>
-              <select id="delta" name="delta">
-                <option value="1 month">1 month</option>
-                <option value="3 months">3 months</option>
-                <option value="6 months">6 months</option>
-                <option value="1 year">1 year</option>
-                <input
-                  value={reminder}
-                  onChange={(event) => setReminder(event.target.value)}
-                  required
-                />
-              </select>
-            </div>
-            <button className="btn" type="submit" onClick={submitForm}>
-              Save
-            </button>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
-};
-export default EventsForm;
+}

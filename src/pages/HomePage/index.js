@@ -22,7 +22,6 @@ export default function HomePage() {
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
 
-
   return (
     <div className="main-container">
       {Loading ? (
@@ -156,7 +155,15 @@ export default function HomePage() {
           )}
         </div>
       )}
-      <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>
+      <div>
+        {
+          !toggleEventForm ? (
+            ""
+          ) : (
+            <EventsForm close={() => setToggleEventForm(false)} />
+          ) /* <EventsForm /> */
+        }
+      </div>
     </div>
   );
 }

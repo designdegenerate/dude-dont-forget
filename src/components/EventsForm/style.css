@@ -1,10 +1,15 @@
 .form-style-4 {
-  width: 450px;
+  position: fixed;
+  top: 25%;
+  left: 35%;
+  margin: 0 auto;
+  width: 375px;
   font-size: 16px;
   background: #ffffff;
-  padding: 30px 30px 15px 30px;
-  border: 2px solid #ccced0;
+  padding: 10px 30px 20px 30px;
+  /* border: 2px solid #ccced0; */
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 .form-style-4 label {
   font-size: 16px;
@@ -16,18 +21,55 @@
   margin-bottom: 10px;
 }
 
-.form-style-4 input[type="date"] {
+/* .form-style-4 input[type="date"] {
   background-color: #ffffff;
   border: solid;
   width: 200px;
   outline: none;
   padding: 2px 2px 2px 2px;
-}
+} */
 
 .btn {
+  border: 1px solid #11a704;
   background-color: #11a704;
   color: white;
-  border: none;
   padding: 6px 8px 6px 8px;
   border-radius: 5px;
+}
+
+.create-event-form-divs {
+  margin-top: 20px;
+}
+
+.create-event-button {
+  text-align: right;
+  padding-left: 20px;
+}
+
+.create-event-type-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-event-cancel-btn {
+  margin-right: 15px;
+  background: transparent;
+  border: 1px solid #b7b7b7;
+  color: #949494;
+}
+
+.create-event-cancel-btn:hover {
+  margin-right: 15px;
+  background: transparent;
+  border: 1px solid #13b405;
+  color: #11a704;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.15);
 }
