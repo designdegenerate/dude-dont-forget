@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import EventCard from "../../components/EventCard";
@@ -10,7 +10,6 @@ import { selectPartnerId, selectPartners } from "../../store/user/selectors";
 import { selectEventOrFact } from "../../store/user/selectors";
 import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
-import { useNavigate } from "react-router-dom";
 import { addNewPartner } from "../../store/user/actions";
 
 export default function HomePage() {
@@ -24,8 +23,6 @@ export default function HomePage() {
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
-
-  console.log(partnerList);
 
   return (
     <div className="main-container">

@@ -5,9 +5,7 @@ import { appDoneLoading, appLoading, setMessage } from "../appState/slice";
 
 import { addEvent, loginSuccess, logOut, tokenStillValid } from "./slice";
 
-
 import { addFact } from "./slice";
-
 
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
@@ -139,15 +137,16 @@ export const sendEvent =
 export const sendFact =
   (title, details, partnerId, userId) => async (dispatch, getState) => {
     try {
+      console.log(title, details, partnerId, userId);
       const response = await axios.post(`${apiUrl}/facts/addNew`, {
         title,
         details,
         partnerId,
         userId,
       });
-      console.log(title, details, partnerId, userId);
+
       console.log("response:", response.data);
-      // dispatch(addEvent(response.data));
+      dispatch(addEvent(response.data));
     } catch (e) {
       console.log({ error: e.message });
     }
@@ -207,6 +206,18 @@ export const removeEvent = (eventId) => {
       console.log(e);
     }
   };
+};
+
+export const removeFact = (factID) => async (dispatch, getState) => {
+  const token = selectToken(getState());
+  try {
+    const response = await axios.delete(`${apiUrl}/facts/delete/${factID}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    dispatch(addEvent(response.data.partners));
+  } catch (e) {
+    console.log({ error: e.message });
+  }
 };
 
 export const addNewPartner = async (name) => {
