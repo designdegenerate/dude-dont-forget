@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { sendEmail } from "../../store/user/actions";
 import "./style.css";
 
 const EventsForm = () => {
@@ -13,7 +14,7 @@ const EventsForm = () => {
     "Anniversary"
   );
   const [date, setDate] = useState();
-  const [delta, setDelta] = useState(
+  const [reminder, setReminder] = useState(
     "1 month",
     "3 months",
     "6 monthts",
@@ -27,11 +28,11 @@ const EventsForm = () => {
   function submitForm(event) {
     event.preventDefault();
 
-    //  dispatch(sendEvent(type, ,date,delta));
+    dispatch(sendEmail(type, date, reminder));
 
     setType("");
     setDate("");
-    setDelta("");
+    setReminder("");
   }
 
   return (
@@ -50,6 +51,11 @@ const EventsForm = () => {
                 <option value="Birthday">Birthday</option>
                 <option value="Valentine's">Valentine's</option>
                 <option value="Anniversary">Anniversary</option>
+                <input
+                  value={type}
+                  onChange={(event) => setType(event.target.value)}
+                  required
+                />
               </select>
             </div>
             <div>
@@ -73,6 +79,11 @@ const EventsForm = () => {
                 <option value="3 months">3 months</option>
                 <option value="6 months">6 months</option>
                 <option value="1 year">1 year</option>
+                <input
+                  value={reminder}
+                  onChange={(event) => setReminder(event.target.value)}
+                  required
+                />
               </select>
             </div>
             <button className="btn" type="submit" onClick={submitForm}>
