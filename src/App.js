@@ -26,10 +26,10 @@ function App() {
       <MessageBox />
       <NavBar />
       <Routes>
-        <Route exact path="/home" element={<HomePage />} />
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route exact path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );

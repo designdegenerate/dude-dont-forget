@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 
-import "../Login/styles.css"
+import "../Login/styles.css";
 
 export default function SignUp() {
   const [name, setName] = useState("");
+  const [nameFriend, setNameFriend] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(signUp(name, email, password));
+    dispatch(signUp(name, email, password, nameFriend));
   }
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function SignUp() {
     }
   });
   return (
-    <div className="login-page" >
+    <div className="login-page">
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <label>Name: </label>
@@ -34,6 +35,13 @@ export default function SignUp() {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <label>"Friend": </label>
+
+        <input
+          type="text"
+          value={nameFriend}
+          onChange={(e) => setNameFriend(e.target.value)}
         />
         <label>Email: </label>
         <input
