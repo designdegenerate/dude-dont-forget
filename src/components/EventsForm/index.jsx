@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { sendEmail } from "../../store/user/actions";
 import "./style.css";
 
-const EventsForm = (props) => {
+export default function EventsForm(props) {
   const dispatch = useDispatch();
 
   const [type, setType] = useState(
@@ -13,12 +14,8 @@ const EventsForm = (props) => {
     "Anniversary"
   );
   const [date, setDate] = useState();
-  const [interval, setInterval] = useState(
-    "1 month",
-    "3 months",
-    "6 monthts",
-    "1 year"
-  );
+
+  const [interval, setInterval] = useState();
 
   //   const token = useSelector();
 
@@ -27,7 +24,7 @@ const EventsForm = (props) => {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(sendEvent(type, date, interval));
+    // dispatch(sendEvent(type, date, interval));
 
     setType("");
     setDate("");
@@ -97,5 +94,4 @@ const EventsForm = (props) => {
       </form>
     </>
   );
-};
-export default EventsForm;
+}

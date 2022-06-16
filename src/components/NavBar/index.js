@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
+import { Button } from "react-bootstrap";
 import { logOut } from "../../store/user/slice";
 import { selectToken } from "../../store/user/selectors";
 import { getUserWithStoredToken, logOutUser } from "../../store/user/actions";
@@ -27,7 +27,7 @@ export default function NavBar() {
         </div>
       ) : (
         <div>
-          <Link to="/home">Home</Link>
+          {/* <Link to="/home">Home</Link> */}
           <button onClick={() => dispatch(logOutUser(navigate))}>Logout</button>
         </div>
       )}

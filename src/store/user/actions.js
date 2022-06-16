@@ -5,7 +5,7 @@ import { loginSuccess, logOut, tokenStillValid } from "./slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
 
-export const signUp = (name, email, password) => {
+export const signUp = (name, email, password, nameFriend) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
@@ -13,6 +13,7 @@ export const signUp = (name, email, password) => {
         name,
         email,
         password,
+        nameFriend,
       });
 
       dispatch(
@@ -111,4 +112,41 @@ const sendEvent = (type, date, interval) => async (dispatch, getState) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const sendEmail = (type, date, reminder) => {
+  return async (dispatch) => {
+    try {
+      dispatch(appLoading());
+
+      const response = await axios.post(`${apiUrl}/email`, {
+        type,
+        date,
+        reminder,
+      });
+
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.response.data.message,
+          })
+        );
+      } else {
+        console.log(error.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.message,
+          })
+        );
+      }
+      dispatch(appDoneLoading());
+    }
+  };
 };
