@@ -10,6 +10,7 @@ import { selectEventOrFact } from "../../store/user/selectors";
 import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
 import { useNavigate } from "react-router-dom";
+import { addNewPartner } from "../../store/user/actions";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ export default function HomePage() {
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
+
+  console.log(partnerList);
 
   return (
     <div className="main-container">
@@ -61,7 +64,7 @@ export default function HomePage() {
                   <button
                     className="add-name-button"
                     onClick={() => {
-                      // dispatch(addNewPartner(partnerName));
+                      dispatch(addNewPartner(partnerName));
                       setShowForm(false);
                     }}
                   >
@@ -104,7 +107,11 @@ export default function HomePage() {
                   )
                 ].events.map((event) => {
                   return (
-                    <EventCard title={event.title} date={event.startDate} />
+                    <EventCard
+                      id={event.id}
+                      title={event.title}
+                      date={event.startDate}
+                    />
                   );
                 })
               ) : (
@@ -160,7 +167,10 @@ export default function HomePage() {
           !toggleEventForm ? (
             ""
           ) : (
-            <EventsForm close={() => setToggleEventForm(false)} />
+            <EventsForm
+              close={() => setToggleEventForm(false)}
+              partnerId={getCurrentPartnerId}
+            />
           ) /* <EventsForm /> */
         }
       </div>

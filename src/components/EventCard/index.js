@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
+import { removeEvent } from "../../store/user/actions";
 import "./style.css";
 
-
 export default function EventCard(props) {
+  const dispatch = useDispatch();
 
-  const eventType = props.type === "danger" ? "danger" : props.type === "warning" ? "warning" : ""
+  const eventType =
+    props.type === "danger"
+      ? "danger"
+      : props.type === "warning"
+      ? "warning"
+      : "";
 
   /* Takes the following Props:
 
@@ -16,6 +23,10 @@ export default function EventCard(props) {
   - type: if the event is close, use "warning", if the user missed it, use "danger"
 
   */
+
+  const deleteEvent = () => {
+    dispatch(removeEvent(props.id));
+  };
 
   return (
     <div className="event-card" data-type={eventType}>
@@ -48,7 +59,7 @@ export default function EventCard(props) {
           <p>{props.date}</p>
         </div>
         <div>
-          <button>×</button>
+          <button onClick={deleteEvent}>×</button>
         </div>
       </div>
     </div>

@@ -38,6 +38,9 @@ export const userSlice = createSlice({
     isEventToggle: (state, action) => {
       state.isEvent = action.payload;
     },
+    addEvent: (state, action) => {
+      state.partners = action.payload;
+    },
   },
 });
 
@@ -47,6 +50,7 @@ export const {
   tokenStillValid,
   selectNameById,
   isEventToggle,
+  addEvent,
 } = userSlice.actions;
 
 export default userSlice.reducer;
