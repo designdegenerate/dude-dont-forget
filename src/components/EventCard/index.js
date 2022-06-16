@@ -34,7 +34,6 @@ export default function EventCard(props) {
         </button>
         <div className="title-url">
           <h2>{props.title}</h2>
-          <a href={props.url} target="_blank">{props.urlTitle}</a>
         </div>
       </div>
       <div className="right-side">
