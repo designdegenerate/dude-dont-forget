@@ -19,7 +19,7 @@ export default function NavBar() {
 
   return (
     <nav>
-      <h1>Dude Don't Forget</h1>
+      <h1></h1>
       {!token ? (
         <div>
           <Link to="/signup">Sign up</Link>
@@ -28,7 +28,12 @@ export default function NavBar() {
       ) : (
         <div>
           {/* <Link to="/home">Home</Link> */}
-          <button onClick={() => dispatch(logOutUser(navigate))}>Logout</button>
+          <button
+            onClick={() => dispatch(logOutUser(navigate))}
+            className="btn-logout"
+          >
+            Logout
+          </button>
         </div>
       )}
     </nav>

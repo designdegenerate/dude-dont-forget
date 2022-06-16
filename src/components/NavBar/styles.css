@@ -5,7 +5,8 @@ nav {
   padding: 5px 24px;
   color: white;
   align-items: center;
-  background-color: #6c3177;
+  background-color: transparent;
+  /* background-color: #6c3177; */
 }
 
 nav > div {
@@ -15,4 +16,14 @@ nav > div {
 
 nav a {
   color: inherit;
+}
+
+.btn-logout {
+  border: 1px solid #6c3177;
+  border-radius: 3px;
+  padding: 6px 15px;
+  margin-top: -40px;
+  background-color: transparent;
+  color: #6c3177;
+  font-weight: 600;
 }

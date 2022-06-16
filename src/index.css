@@ -25,3 +25,9 @@ select {
   border-radius: 3px;
   padding: 4px;
 }
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 60px;
+  font-weight: 700;
+}

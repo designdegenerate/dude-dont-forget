@@ -20,9 +20,10 @@ export default function EventsForm(props) {
 
     dispatch(sendEvent(type, date, interval, props.partnerId));
 
-    setType("");
-    setDate("");
-    setInterval("");
+    setType("Give Flowers");
+    setDate("2022-01-01");
+    setInterval("1 month");
+    props.close();
   }
 
   return (
@@ -47,9 +48,10 @@ export default function EventsForm(props) {
                     value={type}
                   >
                     <option value="Give Flowers">Give Flowers</option>
-                    <option value="Send chocolate">Buy chocolate</option>
+                    <option value="Send chocolate">Buy Chocolate</option>
                     <option value="Birthday">Birthday</option>
                     <option value="Valentine's">Valentine's</option>
+                    <option value="First Date">First Date</option>
                     <option value="Anniversary">Anniversary</option>
                   </select>
                 </div>

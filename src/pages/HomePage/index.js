@@ -38,7 +38,10 @@ export default function HomePage() {
       {Loading ? (
         <h1>LOADING</h1>
       ) : (
-        <div>
+        <div style={{ marginBottom: "60px" }}>
+          <div className="main-title-div">
+            <h1 className="main-title">Dude, don't forget</h1>
+          </div>
           <div className="names">
             <ul>
               {partnerList

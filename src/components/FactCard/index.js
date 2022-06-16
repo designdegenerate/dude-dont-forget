@@ -13,7 +13,9 @@ export default function FactCard(props) {
 
   return (
     <div className="fact-card">
-      <button onClick={() => deleteOnClick()}>×</button>
+
+      <button className="delete-fact-card-button" onClick={() => deleteOnClick()}>×</button>
+
       <h2>{props.title}</h2>
       <p>{props.details}</p>
     </div>
