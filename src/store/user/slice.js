@@ -42,6 +42,9 @@ export const userSlice = createSlice({
     addEvent: (state, action) => {
       state.partners = action.payload;
     },
+    addPartner: (state, action) => {
+      state.partners = [...state.partners, action.payload];
+    },
   },
 });
 
@@ -54,7 +57,11 @@ export const {
 
   addEvent,
 
+  addPartner,
+
+
   addFact,
+
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -10,6 +10,9 @@ import { selectPartnerId, selectPartners } from "../../store/user/selectors";
 import { selectEventOrFact } from "../../store/user/selectors";
 import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
+
+import Kanva from "../Kanva";
+
 import { addNewPartner } from "../../store/user/actions";
 
 export default function HomePage() {
@@ -23,6 +26,12 @@ export default function HomePage() {
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
+
+  const submitNewPartner = (e) => {
+    e.preventDefault();
+    dispatch(addNewPartner(partnerName));
+    setShowForm(false);
+  };
 
   return (
     <div className="main-container">
@@ -59,16 +68,14 @@ export default function HomePage() {
                       className="form-input"
                       onChange={(e) => setPartnerName(e.target.value)}
                     />
+                    <button
+                      type="submit"
+                      className="add-name-button"
+                      onClick={submitNewPartner}
+                    >
+                      Add
+                    </button>
                   </form>
-                  <button
-                    className="add-name-button"
-                    onClick={() => {
-                      dispatch(addNewPartner(partnerName));
-                      setShowForm(false);
-                    }}
-                  >
-                    Add
-                  </button>
                 </div>
               ) : null}
               <button
@@ -165,24 +172,31 @@ export default function HomePage() {
           )}
         </div>
       )}
+
+      <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>
+
       <div>
-        {
-          !toggleEventForm ? (
-            ""
-          ) : (
-            <EventsForm
-              close={() => setToggleEventForm(false)}
-              partnerId={getCurrentPartnerId}
-            />
-          ) /* <EventsForm /> */
-        }
-        {
-          !toggleFactForm ? (
-            ""
-          ) : (
-            <FactForm close={() => setToggleFactForm(false)} />
-          ) /* <EventsForm /> */
-        }
+        {" "}
+        <Kanva />
+        <div>
+          {
+            !toggleEventForm ? (
+              ""
+            ) : (
+              <EventsForm
+                close={() => setToggleEventForm(false)}
+                partnerId={getCurrentPartnerId}
+              />
+            ) /* <EventsForm /> */
+          }
+          {
+            !toggleFactForm ? (
+              ""
+            ) : (
+              <FactForm close={() => setToggleFactForm(false)} />
+            ) /* <EventsForm /> */
+          }
+        </div>
       </div>
     </div>
   );
