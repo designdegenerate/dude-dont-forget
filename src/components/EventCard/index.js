@@ -42,7 +42,7 @@ export default function EventCard(props) {
             {props.missedBy ? (
               <strong>Missed by {props.missedBy}!</strong>
             ) : (
-              <strong>in {props.relDate}</strong>
+              <strong>in {props.relDate} days</strong>
             )}
           </p>
           <p>{props.date}</p>

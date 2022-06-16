@@ -10,6 +10,7 @@ import { selectEventOrFact } from "../../store/user/selectors";
 import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
 import { useNavigate } from "react-router-dom";
+import { DateTime } from "luxon";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -103,8 +104,134 @@ export default function HomePage() {
                     (partner) => partner.id === getCurrentPartnerId
                   )
                 ].events.map((event) => {
+                  const flatNow = DateTime.now()
+                    .toFormat("yyyy-MM-dd")
+                    .toString()
+                    .replace(/-/g, "");
+
+                  const eventDate = DateTime.fromISO(event.startDate);
+                  const eventDateFlat = eventDate
+                    .toFormat("yyyy-MM-dd")
+                    .toString()
+                    .replace(/-/g, "");
+
+                  const eventDateString = String(event.startDate);
+
+                  const yearRegex = /\d\d\d\d/i;
+                  let parsedEventDate;
+                  let parsedRelDate;
+                  let warning;
+
+                  const thisYear = () => {
+                    const mydate = new Date();
+                    return mydate.getFullYear().toString();
+                  };
+
+                  const nextYear = () => {
+                    const mydate = new Date();
+                    const year = mydate.getFullYear().toString();
+                    const nextyear = parseInt(year) + 1;
+                    return nextyear.toString();
+                  };
+
+                  const transformEventYear = (year) => {
+                    return eventDateString.replace(yearRegex, year());
+                  };
+
+                  if (event.interval === "1 year") {
+                    if (flatNow > eventDateFlat) {
+                      parsedEventDate = transformEventYear(nextYear);
+                      const newYear = DateTime.fromISO(parsedEventDate);
+                      const draftDate = DateTime.now().diff(newYear, [
+                        "days",
+                      ]);
+
+                      parsedRelDate = Math.floor(Math.abs(
+                        parseFloat(draftDate.values.days)
+                      ));
+                    } else {
+                      parsedEventDate = transformEventYear(thisYear);
+                      const newDate = DateTime.fromISO(parsedEventDate);
+                      const draftDate = DateTime.now().diff(newDate, ["days"]);
+
+                      parsedRelDate = Math.floor(Math.abs(
+                        parseFloat(draftDate.values.days)
+                      ));
+                    }
+                  }
+
+                  if (event.interval !== "1 year") {
+                    const change = DateTime.now().diff(eventDate, ["days"]);
+
+                    let interval = 0;
+
+                    if (event.interval === "1 month") {
+                      interval = 30;
+                    }
+
+                    if (event.interval === "3 months") {
+                      interval = 60;
+                    }
+
+                    if (event.interval === "6 months") {
+                      interval = 180;
+                    }
+
+                    console.log(interval);
+                    console.log(parseFloat(change.values.days));
+
+                    const delta = parseFloat(change.values.days) / parseFloat(interval) + 1;
+
+                    // parsedEventDate = 
+                    console.log(DateTime.fromISO(event.startDate).plus({ days: delta }));
+                      // .plus({ days: delta })
+                      console.log(parsedEventDate);
+                  }
+
+                  // const thisYeareventDate = eventDate.
+
+                  // // console.log(now);
+                  // console.log(eventDate);
+
+                  /* Logic
+
+                  if interval is 1 year:
+
+                  set birthday as this year.
+                  now - eventDate, 
+                    if num is positive
+                      then, birthday has happened,
+                        set bday to be next year
+                        parse date as in x months, x day.
+
+                    if num is negative
+                      bday coming up
+                        keep bday as coming up
+                          parse time diff
+                          if time diff is within range
+                            show warning
+
+                  if interval is anything else:
+
+                  delta = (Today - EventStartDate ) / intervalByDays
+
+                  comingUp = eventStartDate + ( [delta + 1] * intervalByDays);
+
+                  */
+
+                  if (parsedRelDate > 7) {
+                    warning = "danger";
+                  } else if (parsedRelDate > 14) {
+                    warning = "warning";
+                  }
+
                   return (
-                    <EventCard title={event.title} date={event.startDate} />
+                    <EventCard
+                      title={event.title}
+                      date={parsedEventDate}
+                      relDate={parsedRelDate}
+                      warning={warning}
+                    />
                   );
                 })
               ) : (
