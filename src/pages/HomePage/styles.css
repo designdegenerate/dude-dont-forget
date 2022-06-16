@@ -3,7 +3,7 @@
   width: 100%;
   margin: 16px auto 0 auto;
   border-radius: 18px 18px 0 0;
-  background-color: #fff;
+  background-color: #feac89;
   min-height: 100vh;
 }
 
@@ -25,11 +25,9 @@
   gap: 32px;
 }
 
-
 .names li {
   cursor: pointer;
 }
-
 
 .names li[data-selected="true"] {
   font-weight: bold;
@@ -120,7 +118,7 @@ events-facts-button {
   border: 2px solid #d0d0d0;
   border-radius: 5px;
 }
-.events-facts-button{
+.events-facts-button {
   cursor: pointer;
 }
 .events-facts-button[data-selected="true"] {

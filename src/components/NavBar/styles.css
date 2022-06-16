@@ -1,16 +1,18 @@
-nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 16px 24px;
-    align-items: center;
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 24px;
+  color: white;
+  align-items: center;
+  background-color: #6c3177;
 }
 
-nav > div{
-    display: flex;
-    gap: 24px;
+nav > div {
+  display: flex;
+  gap: 24px;
 }
 
 nav a {
-    color: inherit;
+  color: inherit;
 }
