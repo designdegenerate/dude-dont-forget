@@ -10,6 +10,7 @@ import { selectEventOrFact } from "../../store/user/selectors";
 import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
 import { useNavigate } from "react-router-dom";
+import Kanva from "../Kanva";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -21,7 +22,6 @@ export default function HomePage() {
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
-
 
   return (
     <div className="main-container">
@@ -156,7 +156,13 @@ export default function HomePage() {
           )}
         </div>
       )}
+
       <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>
+
+      <div>
+        {" "}
+        <Kanva />
+      </div>
     </div>
   );
 }
