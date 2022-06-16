@@ -1,0 +1,56 @@
+{
+    
+            "email": "a@a.com",
+            "partners": [
+                {
+                    "id": 1,
+                    "name": "Laura",
+                    "events": [
+                        {
+                            "title": "Birthday",
+                            "date": "02-10-1997"
+                        },
+                        {
+                            "title": "Give flowers",
+                            "date": "10-06-2022"
+                        }
+                    ],
+                    "facts": [
+                        {
+                            "title": "Favourite Drink",
+                            "details": "Negroni"
+                        },
+                        {
+                            "title": "Favourite Food",
+                            "details": "proper pizza"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Mauria",
+                    "events": [
+                        {
+                            "title": "Birthday",
+                            "date": "02-10-1979"
+                        },
+                        {
+                            "title": "Give flowers",
+                            "date": "10-06-2022"
+                        }
+                    ],
+                    "facts": [
+                        {
+                            "title": "Favourite Drink",
+                            "details": "IPA beer"
+                        },
+                        {
+                            "title": "Favourite Food",
+                            "details": "sushi"
+                        }
+                    ]
+                }
+            ]
+        
+    
+}
