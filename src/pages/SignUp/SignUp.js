@@ -37,7 +37,6 @@ export default function SignUp() {
           onChange={(e) => setName(e.target.value)}
         />
         <label>"Friend": </label>
-
         <input
           type="text"
           value={nameFriend}
