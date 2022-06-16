@@ -75,8 +75,8 @@ export const logOutUser = (navigate) => {
   return async (dispatch, getState) => {
     dispatch(logOut());
     navigate("/login");
-  }
-}
+  };
+};
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
@@ -103,4 +103,12 @@ export const getUserWithStoredToken = () => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+const sendEvent = (type, date, interval) => async (dispatch, getState) => {
+  try {
+    const response = await axios.post(`${apiUrl}/`);
+  } catch (e) {
+    console.log(e);
+  }
 };

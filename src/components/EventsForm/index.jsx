@@ -13,7 +13,7 @@ const EventsForm = (props) => {
     "Anniversary"
   );
   const [date, setDate] = useState();
-  const [delta, setDelta] = useState(
+  const [interval, setInterval] = useState(
     "1 month",
     "3 months",
     "6 monthts",
@@ -27,11 +27,11 @@ const EventsForm = (props) => {
   function submitForm(event) {
     event.preventDefault();
 
-    //  dispatch(sendEvent(type, ,date,delta));
+    dispatch(sendEvent(type, date, interval));
 
     setType("");
     setDate("");
-    setDelta("");
+    setInterval("");
   }
 
   return (
@@ -69,10 +69,10 @@ const EventsForm = (props) => {
                 </div>
               </div>
               <div className="create-event-form-divs">
-                <label for="delta">
+                <label for="interval">
                   <strong>Reminder</strong>
                 </label>
-                <select id="delta" name="delta">
+                <select id="interval" name="interval" onChange={setInterval}>
                   <option value="1 month">1 month</option>
                   <option value="3 months">3 months</option>
                   <option value="6 months">6 months</option>
