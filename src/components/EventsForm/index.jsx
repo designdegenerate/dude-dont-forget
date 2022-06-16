@@ -19,6 +19,7 @@ export default function EventsForm(props) {
     event.preventDefault();
 
     dispatch(sendEvent(type, date, interval, props.partnerId));
+    dispatch(sendEmail(type, date, interval));
 
     setType("Give Flowers");
     setDate("2022-01-01");
