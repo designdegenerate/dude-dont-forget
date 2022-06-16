@@ -41,18 +41,6 @@ export const userSlice = createSlice({
 
     addEvent: (state, action) => {
       state.partners = action.payload;
-
-    addFact: (state, action) => {
-      const { partnerId } = action.payload;
-      console.log({ payload: action.payload });
-      console.log("partnerId: ", partnerId);
-      // console.log({partnerState:state.partners[]})
-      // const { title, details, partnerId } = action.payload;
-      // state.partners[partnerId].facts = [
-      //   ...state.partners[partnerId].facts,
-      //   { title: title, details: details },
-      // ];
-
     },
   },
 });
@@ -67,7 +55,6 @@ export const {
   addEvent,
 
   addFact,
-
 } = userSlice.actions;
 
 export default userSlice.reducer;
