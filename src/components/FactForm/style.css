@@ -34,10 +34,16 @@
   background-color: #11a704;
   color: white;
   padding: 6px 8px 6px 8px;
+  margin-right: 18px;
   border-radius: 5px;
 }
 
 .create-event-form-divs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
   margin-top: 20px;
 }
 

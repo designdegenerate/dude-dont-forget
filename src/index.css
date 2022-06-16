@@ -18,3 +18,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+input,
+select {
+  border: 2px solid #e3e3e3;
+  border-radius: 3px;
+  padding: 4px;
+}
