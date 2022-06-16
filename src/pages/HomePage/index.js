@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import EventCard from "../../components/EventCard";
 import EventsForm from "../../components/EventsForm";
+import FactForm from "../../components/FactForm";
 import FactCard from "../../components/FactCard";
 
 import { selectPartnerId, selectPartners } from "../../store/user/selectors";
@@ -17,6 +18,7 @@ export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
   const [partnerName, setPartnerName] = useState("");
   const [toggleEventForm, setToggleEventForm] = useState(false);
+  const [toggleFactForm, setToggleFactForm] = useState(false);
   const isEventCurrent = useSelector(selectEventOrFact);
 
   const partnerList = useSelector(selectPartners);
@@ -132,7 +134,11 @@ export default function HomePage() {
                       )
                     ].facts.map((fact) => {
                       return (
-                        <FactCard title={fact.title} details={fact.details} />
+                        <FactCard
+                          id={fact.id}
+                          title={fact.title}
+                          details={fact.details}
+                        />
                       );
                     })
                   : ""}
@@ -154,7 +160,7 @@ export default function HomePage() {
             <button
               className="add-event-button"
               onClick={() => {
-                setToggleEventForm(!toggleEventForm);
+                setToggleFactForm(!toggleFactForm);
               }}
             >
               +
@@ -171,6 +177,13 @@ export default function HomePage() {
               close={() => setToggleEventForm(false)}
               partnerId={getCurrentPartnerId}
             />
+          ) /* <EventsForm /> */
+        }
+        {
+          !toggleFactForm ? (
+            ""
+          ) : (
+            <FactForm close={() => setToggleFactForm(false)} />
           ) /* <EventsForm /> */
         }
       </div>

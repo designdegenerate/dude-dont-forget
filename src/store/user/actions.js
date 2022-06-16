@@ -1,7 +1,14 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
+
 import { appDoneLoading, appLoading, setMessage } from "../appState/slice";
+
 import { addEvent, loginSuccess, logOut, tokenStillValid } from "./slice";
+
+
+import { addFact } from "./slice";
+
+
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
 
@@ -126,6 +133,23 @@ export const sendEvent =
       dispatch(addEvent(response.data));
     } catch (e) {
       console.log(e);
+    }
+  };
+
+export const sendFact =
+  (title, details, partnerId, userId) => async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${apiUrl}/facts/addNew`, {
+        title,
+        details,
+        partnerId,
+        userId,
+      });
+      console.log(title, details, partnerId, userId);
+      console.log("response:", response.data);
+      // dispatch(addEvent(response.data));
+    } catch (e) {
+      console.log({ error: e.message });
     }
   };
 
