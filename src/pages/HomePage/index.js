@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import EventCard from "../../components/EventCard";
 import EventsForm from "../../components/EventsForm";
+import FactForm from "../../components/FactForm";
 import FactCard from "../../components/FactCard";
 
 import { selectPartnerId, selectPartners } from "../../store/user/selectors";
@@ -11,24 +12,36 @@ import { selectNameById, isEventToggle } from "../../store/user/slice";
 import { selectAppLoading } from "../../store/appState/selectors";
 import { useNavigate } from "react-router-dom";
 import { DateTime } from "luxon";
+import Kanva from "../Kanva";
+import { addNewPartner } from "../../store/user/actions";
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [partnerName, setPartnerName] = useState("");
   const [toggleEventForm, setToggleEventForm] = useState(false);
+  const [toggleFactForm, setToggleFactForm] = useState(false);
   const isEventCurrent = useSelector(selectEventOrFact);
 
   const partnerList = useSelector(selectPartners);
   const getCurrentPartnerId = useSelector(selectPartnerId);
   const Loading = useSelector(selectAppLoading);
 
+  const submitNewPartner = (e) => {
+    e.preventDefault();
+    dispatch(addNewPartner(partnerName));
+    setShowForm(false);
+  };
+
   return (
     <div className="main-container">
       {Loading ? (
         <h1>LOADING</h1>
       ) : (
-        <div>
+        <div style={{ marginBottom: "60px" }}>
+          <div className="main-title-div">
+            <h1 className="main-title">Dude, don't forget</h1>
+          </div>
           <div className="names">
             <ul>
               {partnerList
@@ -58,16 +71,14 @@ export default function HomePage() {
                       className="form-input"
                       onChange={(e) => setPartnerName(e.target.value)}
                     />
+                    <button
+                      type="submit"
+                      className="add-name-button"
+                      onClick={submitNewPartner}
+                    >
+                      Add
+                    </button>
                   </form>
-                  <button
-                    className="add-name-button"
-                    onClick={() => {
-                      // dispatch(addNewPartner(partnerName));
-                      setShowForm(false);
-                    }}
-                  >
-                    Add
-                  </button>
                 </div>
               ) : null}
               <button
@@ -231,6 +242,7 @@ export default function HomePage() {
                       date={parsedEventDate}
                       relDate={parsedRelDate}
                       warning={warning}
+                      id={event.id}
                     />
                   );
                 })
@@ -252,7 +264,11 @@ export default function HomePage() {
                       )
                     ].facts.map((fact) => {
                       return (
-                        <FactCard title={fact.title} details={fact.details} />
+                        <FactCard
+                          id={fact.id}
+                          title={fact.title}
+                          details={fact.details}
+                        />
                       );
                     })
                   : ""}
@@ -274,7 +290,7 @@ export default function HomePage() {
             <button
               className="add-event-button"
               onClick={() => {
-                setToggleEventForm(!toggleEventForm);
+                setToggleFactForm(!toggleFactForm);
               }}
             >
               +
@@ -282,14 +298,31 @@ export default function HomePage() {
           )}
         </div>
       )}
+
+      <div>{!toggleEventForm ? "" : <EventsForm /> /* <EventsForm /> */}</div>
+
       <div>
-        {
-          !toggleEventForm ? (
-            ""
-          ) : (
-            <EventsForm close={() => setToggleEventForm(false)} />
-          ) /* <EventsForm /> */
-        }
+        {" "}
+        <Kanva />
+        <div>
+          {
+            !toggleEventForm ? (
+              ""
+            ) : (
+              <EventsForm
+                close={() => setToggleEventForm(false)}
+                partnerId={getCurrentPartnerId}
+              />
+            ) /* <EventsForm /> */
+          }
+          {
+            !toggleFactForm ? (
+              ""
+            ) : (
+              <FactForm close={() => setToggleFactForm(false)} />
+            ) /* <EventsForm /> */
+          }
+        </div>
       </div>
     </div>
   );

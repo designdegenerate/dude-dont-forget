@@ -1,15 +1,25 @@
 .main-container {
   max-width: 800px;
   width: 100%;
-  margin: 16px auto 0 auto;
+  margin: -55px auto 0 auto;
+  /* margin: 16px auto 0 auto; */
   border-radius: 18px 18px 0 0;
-  background-color: #fff;
+  background-color: #fff1f7;
   min-height: 100vh;
 }
 
 .main-container ul {
   list-style: none;
   padding: 0;
+}
+
+.main-title-div {
+  display: flex;
+}
+
+.main-title {
+  margin: 20px auto;
+  color: #a62c66;
 }
 
 .names {
@@ -25,14 +35,16 @@
   gap: 32px;
 }
 
-
 .names li {
   cursor: pointer;
 }
 
-
 .names li[data-selected="true"] {
   font-weight: bold;
+  color: white;
+  background-color: #a62c66;
+  padding: 4px 10px;
+  border-radius: 20px;
 }
 
 ul.details-bar {
@@ -69,13 +81,14 @@ events-facts-button {
 
 .add-event-button {
   display: flex;
+  background-color: yellow;
   align-items: center;
   justify-content: center;
   margin: 30px auto;
   appearance: none;
   border-radius: 50%;
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
   border-color: transparent;
   font-size: 24px;
   cursor: pointer;
@@ -87,13 +100,12 @@ events-facts-button {
 }
 
 .add-name-button {
-  background: blue;
+  background: #a62c66;
   border: none;
+  padding: 7px 10px;
   font-weight: 700;
-  padding: 0 15px;
   color: #fff;
   border-radius: 5px;
-  padding: 0 15px;
   margin-left: 5px;
 }
 
@@ -108,7 +120,8 @@ events-facts-button {
   background: transparent;
   border: none;
   margin: auto 0;
-  background: #eaeaea;
+  background: yellow;
+  /* background: #eaeaea; */
   border-radius: 50px;
   width: 40px;
   height: 40px;
@@ -117,10 +130,11 @@ events-facts-button {
 
 .form-input {
   padding: 7px 5px;
-  border: 2px solid #d0d0d0;
+  border: 1px solid #d0d0d0;
   border-radius: 5px;
+  outline: none;
 }
-.events-facts-button{
+.events-facts-button {
   cursor: pointer;
 }
 .events-facts-button[data-selected="true"] {

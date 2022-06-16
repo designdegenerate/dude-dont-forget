@@ -1,7 +1,19 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
+
 import { appDoneLoading, appLoading, setMessage } from "../appState/slice";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+
+import {
+  addEvent,
+  addPartner,
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+} from "./slice";
+
+import { addFact } from "./slice";
+
+
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
 
@@ -106,13 +118,46 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-const sendEvent = (type, date, interval) => async (dispatch, getState) => {
-  try {
-    const response = await axios.post(`${apiUrl}/`);
-  } catch (e) {
-    console.log(e);
-  }
-};
+export const sendEvent =
+  (title, startDate, interval, partnerId) => async (dispatch, getState) => {
+    try {
+      const token = selectToken(getState());
+      const response = await axios.post(
+        `${apiUrl}/events/addNew`,
+        {
+          title,
+          startDate,
+          interval,
+          partnerId,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("response", response);
+      dispatch(addEvent(response.data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const sendFact =
+  (title, details, partnerId, userId) => async (dispatch, getState) => {
+    try {
+      console.log(title, details, partnerId, userId);
+      const response = await axios.post(`${apiUrl}/facts/addNew`, {
+        title,
+        details,
+        partnerId,
+        userId,
+      });
+
+      console.log("response:", response.data);
+      dispatch(addEvent(response.data));
+    } catch (e) {
+      console.log({ error: e.message });
+    }
+  };
 
 export const sendEmail = (type, date, reminder) => {
   return async (dispatch) => {
@@ -149,4 +194,51 @@ export const sendEmail = (type, date, reminder) => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const removeEvent = (eventId) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+
+    try {
+      console.log("eventId", eventId);
+      const response = await axios.delete(
+        `${apiUrl}/events/delete/${eventId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(addEvent(response.data.partners));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const removeFact = (factID) => async (dispatch, getState) => {
+  const token = selectToken(getState());
+  try {
+    const response = await axios.delete(`${apiUrl}/facts/delete/${factID}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    dispatch(addEvent(response.data.partners));
+  } catch (e) {
+    console.log({ error: e.message });
+  }
+};
+
+
+export const addNewPartner = (name) => async (dispatch, getState) => {
+
+  try {
+    const token = selectToken(getState());
+    const response = await axios.post(
+      `${apiUrl}/partners/addNew`,
+      { name },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    dispatch(addPartner(response.data));
+  } catch (e) {
+    console.log(e);
+  }
 };

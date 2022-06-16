@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
+import { removeEvent } from "../../store/user/actions";
 import "./style.css";
 
-
 export default function EventCard(props) {
+  const dispatch = useDispatch();
 
-  const eventType = props.type === "danger" ? "danger" : props.type === "warning" ? "warning" : ""
+  const eventType =
+    props.type === "danger"
+      ? "danger"
+      : props.type === "warning"
+      ? "warning"
+      : "";
 
   /* Takes the following Props:
 
@@ -17,6 +24,10 @@ export default function EventCard(props) {
 
   */
 
+  const deleteEvent = () => {
+    dispatch(removeEvent(props.id));
+  };
+
   return (
     <div className="event-card" data-type={eventType}>
       <div className="left-side">
@@ -25,7 +36,7 @@ export default function EventCard(props) {
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
-            fill="currentColor"
+            fill="#fff"
             class="bi bi-check"
             viewBox="0 0 16 16"
           >
@@ -48,7 +59,7 @@ export default function EventCard(props) {
           <p>{props.date}</p>
         </div>
         <div>
-          <button>×</button>
+          <button onClick={deleteEvent}>×</button>
         </div>
       </div>
     </div>

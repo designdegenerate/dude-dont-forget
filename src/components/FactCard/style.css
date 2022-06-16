@@ -1,17 +1,19 @@
 .fact-card {
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 16px;
   position: relative;
+  color: #fff;
+  background-color: #5b0d609e;
 }
 
 .fact-card h2 {
   font-size: 20px;
-  margin: 0;
+  margin: 0 0 0 10px;
 }
 
 .fact-card p {
-  margin: 8px 0 0 0;
+  margin: 8px 0 0 10px;
 }
 
 .fact-card button {
@@ -23,4 +25,5 @@
   top: 4px;
   right: 8px;
   cursor: pointer;
+  color: white;
 }
