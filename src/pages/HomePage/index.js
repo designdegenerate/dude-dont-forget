@@ -25,6 +25,12 @@ export default function HomePage() {
 
   console.log(partnerList);
 
+  const submitNewPartner = (e) => {
+    e.preventDefault();
+    dispatch(addNewPartner(partnerName));
+    setShowForm(false);
+  };
+
   return (
     <div className="main-container">
       {Loading ? (
@@ -60,16 +66,14 @@ export default function HomePage() {
                       className="form-input"
                       onChange={(e) => setPartnerName(e.target.value)}
                     />
+                    <button
+                      type="submit"
+                      className="add-name-button"
+                      onClick={submitNewPartner}
+                    >
+                      Add
+                    </button>
                   </form>
-                  <button
-                    className="add-name-button"
-                    onClick={() => {
-                      dispatch(addNewPartner(partnerName));
-                      setShowForm(false);
-                    }}
-                  >
-                    Add
-                  </button>
                 </div>
               ) : null}
               <button

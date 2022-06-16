@@ -1,7 +1,13 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
 import { appDoneLoading, appLoading, setMessage } from "../appState/slice";
-import { addEvent, loginSuccess, logOut, tokenStillValid } from "./slice";
+import {
+  addEvent,
+  addPartner,
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+} from "./slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { selectToken } from "./selectors";
 
@@ -185,10 +191,15 @@ export const removeEvent = (eventId) => {
   };
 };
 
-export const addNewPartner = async (name) => {
+export const addNewPartner = (name) => async (dispatch, getState) => {
   try {
-    const response = await axios.post(`${apiUrl}/partners/addNew`, { name });
-    console.log("response", response.data);
+    const token = selectToken(getState());
+    const response = await axios.post(
+      `${apiUrl}/partners/addNew`,
+      { name },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    dispatch(addPartner(response.data));
   } catch (e) {
     console.log(e);
   }
