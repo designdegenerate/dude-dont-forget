@@ -26,7 +26,7 @@ export default function EventsForm(props) {
 
     // dispatch(something(x,y,z));
     // dispatch IN THIS ORDER: description, details, partnerId
-    dispatch(sendFact({description, details, partnerId, userId}));
+    dispatch(sendFact(description, details, partnerId, userId));
   }
 
   return (
